@@ -1,0 +1,204 @@
+.homeBlock {
+    background: no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 95vh;
+}
+
+.homeBlock_container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter: brightness(55%);
+    padding: 0 80px;
+    color: white;
+}
+
+.homeBlock_content {
+    display: flex;
+    flex-direction: column;
+}
+
+.homeBlock_content > h4 {
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 900;
+    margin-bottom: 40px;
+    display: flex;
+    text-transform: uppercase;
+    align-items: center;
+    color: rgb(190, 190, 190)
+}
+
+.homeBlock_content > h4::before {
+    content: "";
+    display: inline-block;
+    height: 24px;
+    width: 4px;
+    margin-right: 8px;
+    background-color: #2560e9;
+}
+
+.homeBlock_content > h1 {
+    font-size: 72px;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+}
+
+.homeBlock_content > p {
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 700px;
+    line-height: 24px;
+    margin-bottom: 64px;
+}
+
+.homeBlock_content > a {
+    width: min-content;
+}
+
+.homeBlock_details {
+    margin-bottom: 20px;
+}
+
+.homeBlock_details,
+.homeBlock_detail {
+    display: flex;
+}
+
+.homeBlock_detail {
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.815);
+}
+
+.homeBlock_likes {
+    margin-right: 40px;
+}
+
+.homeBlock_likes--text {
+    font-size: 20px;
+    margin-right: 4px;
+    color: white;
+}
+
+.homeBlock_seperator {
+    display: flex;
+    align-items: center;
+    margin: 0 12px;
+    font-size: 20px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.815);
+    margin-top: -8px;
+}
+
+.homeBlock_detail > .MuiSvgIcon-root {
+    margin-right: 4px;
+    font-size: 20px;
+    color: #ffd29e;
+}
+
+.homeBlock_language {
+    padding: 2px 8px;
+    border: 1px rgba(255, 255, 255, 0.815) solid;
+    text-transform: uppercase;
+}
+
+.homeBlock_button {
+    width: 172px;
+    height: 60px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: white;
+    border: 2px #fff solid;
+    background-color: transparent;
+    text-transform: uppercase;
+    transition: 200ms ease;
+}
+
+.homeBlock_button:hover {
+    background-color: white;
+    color: black;
+}
+
+@media (max-width: 1024px) {
+    .homeBlock_container {
+        padding: 0 40px;
+    }
+
+    .homeBlock_content > h1 {
+        font-size: 68px;
+    }
+
+    .homeBlock_detail {
+        font-size: 14px;
+    }
+
+    .homeBlock_content > p {
+        max-width: 600px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .homeBlock_seperator {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 540px) {
+    .homeBlock_container {
+        padding: 0 8px;
+        text-align: center;
+        display: flex;
+        align-items: end;
+    }
+
+    .homeBlock_details {
+        display: none;
+    }
+
+    .homeBlock_content {
+        font-size: 56px;
+        margin-bottom: 12px;
+    }
+
+    .homeBlock_content > h1 {
+        font-size: 56px;
+        margin-bottom: 12px;
+    }
+    .homeBlock_content > h4 {
+        justify-content: center;
+
+    }
+    .homeBlock_content > h4::before {
+        display: none;
+    }
+
+    .homeBlock_content > p {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 24px;
+    }
+
+    .homeBlock_detail {
+        margin-right: 12px;
+    }
+
+    .homeBlock_genre {
+        flex: 1;
+        justify-content: start;
+    }
+
+    .homeBlock_button {
+        margin-bottom: 24px;
+    }
+}

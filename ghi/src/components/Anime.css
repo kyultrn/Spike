@@ -1,0 +1,165 @@
+.anime {
+    flex-basis: 22%;
+    position: relative;
+    margin: 0 16px;
+    margin-bottom: 48px;
+    border-radius: 4px;
+    flex-basis: 22%;
+}
+
+.anime:hover > img {
+    filter: brightness(55%);
+}
+
+.anime:hover .anime__content {
+    visibility: visible;
+    opacity: 100%;
+}
+
+.anime__img{
+    width: 100%;
+    height: auto;
+}
+
+.anime > img {
+    width: 100%;
+    height: 100%;
+    transition: 200ms ease;
+    border-radius: 4px;
+}
+
+.anime__skeleton{
+    aspect-ratio: 2 / 3;
+}
+
+.anime__content {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 100px;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: 400ms ease;
+    color: white;
+    z-index: 2;
+    padding-left: 8px;
+}
+
+.anime__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.anime__genres {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.anime__genres > p {
+    font-weight: 400;
+    font-size: 12px;
+    padding: 6px 12px;
+    background-color: rgba(68, 68, 68, 0.637);
+    border-radius: 40px;
+    margin-bottom: 4px;
+}
+
+.anime__genres > p:not(:first-child) {
+    margin-left: 2px;
+}
+
+.anime__details {
+    display: flex;
+    flex-direction: column;
+}
+
+.anime__detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.anime__detail > p {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.anime__detail > .MuiSvgIcon-root {
+    font-size: 18px;
+}
+
+.anime__language > p {
+    text-transform: uppercase;
+}
+
+.anime__detail:not(:last-child) {
+    margin-bottom: 48px;
+}
+
+.anime__year {
+    position: absolute;
+    color: white;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 300;
+    background-color: rgba(68, 68, 68, 0.767);
+    padding: 3px 10px;
+    border-radius: 24px;
+}
+
+@media (max-width: 1280px) {
+    .anime {
+        flex-basis: 28%;
+    }
+
+    .anime__genres > p {
+        font-size: 12px;
+    }
+
+    .anime__genres > p:not(:first-child) {
+        margin-left: 2px;
+    }
+
+    .anime__top > h4 {
+        margin-bottom: 12px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .anime {
+        flex-basis: 42%;
+    }
+}
+
+@media (max-width: 600px) {
+    .anime {
+        flex-basis: 100%;
+    }
+
+    .anime__skeleton{
+        width: 100%;
+    }
+
+    .anime__content {
+        top: 32px;
+    }
+
+    .anime__top > h4 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 380px) {
+    .anime__content {
+        top: 12px;
+    }
+
+    .anime__top > h4 {
+        font-size: 32px;
+    }
+}
