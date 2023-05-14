@@ -6,6 +6,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route element={<AnimesPage />} />
       </Routes>
     </Router>
   );

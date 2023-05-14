@@ -1,0 +1,23 @@
+.animesList__genres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .animesList__genre {
+    padding: 7px 14px;
+    font-size: 14px;
+    background-color: #2f2f2f;
+    border-radius: 32px;
+    transition: 100ms ease;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .animesList__genre:hover {
+    background-color: #3d3d3d;
+    color: white;
+  }

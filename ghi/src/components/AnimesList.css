@@ -1,0 +1,120 @@
+.animesList {
+    display: flex;
+    justify-content: center;
+  }
+
+.animesList__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1400px;
+    padding: 0 24px;
+    justify-content: center;
+}
+
+
+.animesList__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 64px;
+}
+
+.animesList__top > h1 {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+}
+
+.animesList__top > h1::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 44px;
+    margin-right: 12px;
+    background-color: #2560e9;
+}
+
+.animesList__button {
+    width: 200px;
+    height: 48px;
+    font-size: 20px;
+    background-color: transparent;
+    color: white;
+    border: 2px white solid;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 5px;
+    transition: 200ms ease;
+}
+
+.animesList__link {
+    width: 100%;
+    text-decoration: none;
+}
+
+.animesList__button2 {
+    width: 100%;
+    display: none;
+}
+
+.animesList__button:hover {
+    background-color: #fff;
+    color: #000
+}
+
+.animesList__list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.animesList__genres{
+    margin-top: 20px;
+    margin-bottom: -20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.animesList__genres2{
+    display: none;
+}
+
+.animesList__genres > p:hover{
+    background-color: #3d3d3d;
+}
+
+.animesList__genres > p:active{
+    background-color: #2560e9;
+    color: white;
+}
+
+.animesList__genres > p:not(:last-child){
+    margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+    .animesList__top {
+        margin-bottom: 40px;
+    }
+
+    .animesList__top > h1 {
+        font-size: 32px;
+    }
+
+    .animesList__button {
+        display: none;
+    }
+
+    .animesList__button2 {
+        display: block;
+    }
+
+    .animesList__genres1 {
+        display: none;
+    }
+
+    .animesList__genres2 {
+        display: flex;
+    }
+}

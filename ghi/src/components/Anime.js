@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import AnimeSkeleton from "./AnimeSkeleton";
 
 export default function Anime ({ title, poster, id, anime, year }) {
-    const [tvGenres, setTvGenres] = useState([]);
+    const [animeGenres, setAnimeGenres] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -16,13 +16,12 @@ export default function Anime ({ title, poster, id, anime, year }) {
     }, []);
 
     async function getGenres() {
-        const res = anime
-        await axios.get(
+        const res = await axios.get(
             `https://api.themoviedb.org/3/tv/${id}?api_key=13ed770be7087e090e65be33f0396891&language=en-US`
         )
 
         const data = res.data.genres;
-        setTvGenres(data);
+        setAnimeGenres(data);
         setLoading(false);
     }
 
@@ -42,7 +41,7 @@ export default function Anime ({ title, poster, id, anime, year }) {
                     <h4>{title}</h4>
                     <div className="anime__genres">
                         {animeGenres?.map((genre) => (
-                            <p>{genre.name}</p>
+                            <p key={genre.id}>{genre.name}</p>
                         ))}
                     </div>
                 </div>

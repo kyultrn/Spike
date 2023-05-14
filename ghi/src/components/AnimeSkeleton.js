@@ -1,6 +1,6 @@
 import React from "react";
 import "./Anime.css";
-import "./Skelton.css";
+import "./Skeleton.css";
 
 export default function AnimeSkeleton() {
     return (

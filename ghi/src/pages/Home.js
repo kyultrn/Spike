@@ -6,6 +6,9 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "../components/Skeleton.css";
+import AnimesList from "../components/AnimesList";
+import Anime from "../components/Anime.js"
+
 
 export default function Home({ availableGenres }) {
   const settings = {
@@ -48,7 +51,7 @@ export default function Home({ availableGenres }) {
               title={anime.name}
               backDrop={anime.backdrop_path}
               likes={anime.vote_average}
-              year={anime.first_air_date}
+              year={anime.first_air_date.slice(0, 4)}
               language={anime.original_language}
               overview={anime.overview}
               id={anime.id}
@@ -58,6 +61,28 @@ export default function Home({ availableGenres }) {
           ))}
         </OwlCarousel>
       )}
+      <AnimesList
+        listItems={
+          <>
+            {animesData?.slice(5, 17).map((anime) => (
+              <Anime
+                title={anime.name}
+                poster={anime.poster_path}
+                id={anime.id}
+                key={anime.id}
+                year={anime.first_air_date.slice(0, 4)}
+                anime={true}
+              />
+            ))}
+          </>
+        }
+        text="Popular Animes"
+        home={true}
+        animes={true}
+        loading={loading}
+        key={1}
+        amountOfAnimes={12}
+      />
     </div>
   );
 }
