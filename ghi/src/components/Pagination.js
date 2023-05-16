@@ -53,7 +53,109 @@ export default function Pagination ({
                             {pageNumber - 4}
                         </p>
                     )}
+                    {pageNumber + 2 > totalPages && pageNumber - 3 > 0 && (
+                        <p
+                            className="pagination__page pointer pagination__page--hide"
+                            onClick={() => {
+                                setPageNumber(pageNumber - 3);
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                          {pageNumber - 3}
+                        </p>
+                    )}
+                    {pageNumber - 2 > 0 && (
+                        <p
+                            className="pagination__page pointer pagination__page--hide"
+                            onClick={() => {
+                                setPageNumber(pageNumber - 2);
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                            {pageNumber - 2}
+                        </p>
+                    )}
+                    {pageNumber - 1 > 0 && (
+                        <p
+                            className="pagination__page pointer pagination__page--hide"
+                            onClick={() => {
+                                setPageNumber(pageNumber - 1);
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                            {pageNumber - 1}
+                        </p>
+                    )}
+                    <p className="pagination__page pointer selected">{pageNumber}</p>
+                    {pageNumber + 1 <= totalPages && (
+                        <p
+                            className="pagination__page pointer pagination__page--hide"
+                            onClick={() => {
+                                setPageNumber(pageNumber + 1);
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                            {pageNumber + 1}
+                        </p>
+                    )}
+                    {pageNumber + 2 <= totalPages && (
+                        <p
+                            className="pagination__page pointer pagination__page--hide"
+                            onClick={() => {
+                                setPageNumber(pageNumber + 2);
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                            {pageNumber + 2}
+                        </p>
+                    )}
+                    {pageNumber - 2 <= 0 && pageNumber + 3 < totalPages && (
+                        <p
+                            className="pagination__page pointer pagination__page--hide"
+                            onClick={() => {
+                                setPageNumber(pageNumber + 3);
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                            {pageNumber + 3}
+                        </p>
+                    )}
+                    {pageNumber - 1 <= 0 && pageNumber + 4 < totalPages && (
+                        <p
+                            className="pagination__page pointer pagination__page--hide"
+                            onClick={() => {
+                                setPageNumber(pageNumber + 4);
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                            {pageNumber + 4}
+                        </p>
+                    )}
                 </div>
+                <ArrowForwardIcon
+                    className={`pagination__next pointer ${
+                        pageNumber === totalPages && "disabled"
+                    }`}
+                    onClick={
+                        pageNumber < totalPages
+                        ? () => {
+                            setPageNumber(pageNumber + 1);
+                            window.scrollTo(0, 0);
+                        }
+                        : undefined
+                    }
+                />
+                <button
+                    className={`pagination__button pointer ${
+                        pageNumber === totalPages && "disabled"
+                    }`}
+                    onClick={pageNumber !== totalPages ? () => {
+                        setPageNumber(totalPages);
+                        window.scrollTo(0, 0);
+                    } : undefined}
+                >
+                    <KeyboardDoubleArrowRightIcon />
+                </button>
             </div>
         </div>
     )
