@@ -1,23 +1,29 @@
-.animesList__genres {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.animesList__genre,
+.animesList__seeMore,
+.animesList__seeLess {
+  padding: 7px 14px;
+  font-size: 14px;
+  background-color: #2f2f2f;
+  border-radius: 32px;
+  transition: 100ms ease;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .animesList__genre {
-    padding: 7px 14px;
-    font-size: 14px;
-    background-color: #2f2f2f;
-    border-radius: 32px;
-    transition: 100ms ease;
-    margin: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
+.animesList__seeLess,
+.animesList__seeMore{
+padding-top: 4px;
+padding-bottom: 4px;
+}
 
-  .animesList__genre:hover {
-    background-color: #3d3d3d;
-    color: white;
-  }
+.animesList__genre:hover,
+.animesList__seeMore:hover,
+.animesList__seeLess:hover {
+  background-color: #3d3d3d;
+}
+
+.animesList__genre:not(:last-child) {
+  margin-right: 8px;
+}

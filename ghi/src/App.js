@@ -1,5 +1,6 @@
 import { Route, Routes, BrowserRouter as Router } from  "react-router-dom";
 import Home from "./pages/Home";
+import AnimesPage from "./pages/AnimesPage";
 
 function App() {
   return (

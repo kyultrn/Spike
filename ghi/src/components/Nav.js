@@ -26,7 +26,7 @@ export default function Nav () {
             <nav>
                 <div className="nav__left">
                     <p className="nav__logo pointer" onClick={() => navigate('/')}>
-                        Ticket<span className="textcolor nav__plus">+</span>
+                        Spike
                     </p>
                 </div>
                 <div className="nav__right">

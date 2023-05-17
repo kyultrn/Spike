@@ -53,6 +53,14 @@
     margin-bottom: 24px;
 }
 
+.anime__top > h4 {
+    max-width: 95%;
+    font-size: 32px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    text-transform: capitalize;
+  }
+
 .anime__genres {
     display: flex;
     flex-wrap: wrap;
