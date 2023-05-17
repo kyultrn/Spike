@@ -10,7 +10,7 @@ import AnimesList from "../components/AnimesList";
 import Anime from "../components/Anime.js"
 
 
-export default function Home({ availableGenres }) {
+export default function Home() {
   const settings = {
     items: 1,
     loop: true,
