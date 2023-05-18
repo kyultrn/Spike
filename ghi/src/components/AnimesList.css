@@ -1,6 +1,6 @@
-.animesList {
-    display: flex;
-    justify-content: center;
+
+.row{
+    margin: 0 auto;
   }
 
 .animesList__row {

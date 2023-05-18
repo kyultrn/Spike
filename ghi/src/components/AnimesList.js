@@ -23,7 +23,7 @@ export default function AnimesList ({
 
     return (
         <div className="animesList">
-            <div className="container animesList__container" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
+            <div className="container animesList__container" style={{ paddingTop: "60px", paddingBottom: "80px" }}>
                 <div className="row animesList__row">
                     {!searchMade && (
                         <div

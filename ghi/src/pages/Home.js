@@ -7,8 +7,11 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "../components/Skeleton.css";
 import AnimesList from "../components/AnimesList";
-import Anime from "../components/Anime.js"
+import Anime from "../components/Anime.js";
 import Nav from "../components/Nav";
+// import { ScrollContainer, ScrollSnap } from "react-scroll-snap";
+import createScrollSnap from 'scroll-snap'
+
 
 export default function Home() {
   const settings = {
@@ -24,6 +27,20 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [animesData, setAnimesData] = useState([]);
   const [showsData, setShowsData] = useState([]);
+
+  const element = document.getElementById('scroll__snap')
+
+  const { bind, unbind } = createScrollSnap(element, {
+    snapDestinationX: '0%',
+    snapDestinationY: '90%',
+    timeout: 100,
+    duration: 300,
+    threshold: 0.2,
+    snapStop: false,
+    easing: easeInOutQuad,
+  }, () => console.log('element snapped'))
+
+  bind();
 
   async function getTopAnimes() {
     const url =
@@ -41,49 +58,49 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home">
-      <Nav />
-      {loading ? (
-        <div className="carousel_skeleton skeleton"></div>
-      ) : (
-        <OwlCarousel className="owl-theme" {...settings}>
-          {animesData?.slice(0, 5).map((anime) => (
-            <HomeBlock
-              title={anime.name}
-              backDrop={anime.backdrop_path}
-              likes={anime.vote_average}
-              year={anime.first_air_date.slice(0, 4)}
-              language={anime.original_language}
-              overview={anime.overview}
-              id={anime.id}
-              key={anime.id}
-              anime={true}
-            />
-          ))}
-        </OwlCarousel>
-      )}
-      <AnimesList
-        listItems={
-          <>
-            {animesData?.slice(5, 17).map((anime) => (
-              <Anime
+      <div className="home">
+        <Nav />
+        {loading ? (
+          <div className="carousel_skeleton skeleton" id="scroll__snap" />
+        ) : (
+          <OwlCarousel className="owl-theme" {...settings}>
+            {animesData?.slice(0, 5).map((anime) => (
+              <HomeBlock
                 title={anime.name}
-                poster={anime.poster_path}
+                backDrop={anime.backdrop_path}
+                likes={anime.vote_average}
+                year={anime.first_air_date.slice(0, 4)}
+                language={anime.original_language}
+                overview={anime.overview}
                 id={anime.id}
                 key={anime.id}
-                year={anime.first_air_date.slice(0, 4)}
                 anime={true}
               />
             ))}
-          </>
-        }
-        text="Popular Animes"
-        home={true}
-        animes={true}
-        loading={loading}
-        key={1}
-        amountOfAnimes={12}
-      />
-    </div>
+          </OwlCarousel>
+        )}
+        <AnimesList
+          listItems={
+            <>
+              {animesData?.slice(5, 17).map((anime) => (
+                <Anime
+                  title={anime.name}
+                  poster={anime.poster_path}
+                  id={anime.id}
+                  key={anime.id}
+                  year={anime.first_air_date.slice(0, 4)}
+                  anime={true}
+                />
+              ))}
+            </>
+          }
+          text="Popular Animes"
+          home={true}
+          animes={true}
+          loading={loading}
+          key={1}
+          amountOfAnimes={12}
+        />
+      </div>
   );
 }
