@@ -11,6 +11,7 @@
 .search__row {
     display: flex;
     padding: 0 40px;
+    padding-top: 30px;
 }
 
 .search__row > form {
@@ -41,7 +42,7 @@
 
 .search__input--wrapper > button {
     height: 100%;
-    background-color: #2560e9;
+    background-color: red;
     color: white;
     flex: 0.2;
     outline: none;

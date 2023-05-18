@@ -8,7 +8,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import "../components/Skeleton.css";
 import AnimesList from "../components/AnimesList";
 import Anime from "../components/Anime.js"
-
+import Nav from "../components/Nav";
 
 export default function Home() {
   const settings = {
@@ -42,6 +42,7 @@ export default function Home() {
 
   return (
     <div className="home">
+      <Nav />
       {loading ? (
         <div className="carousel_skeleton skeleton"></div>
       ) : (

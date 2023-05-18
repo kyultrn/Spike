@@ -31,50 +31,132 @@ export default function AnimesPage () {
         });
     }, [pageNumber, search, filter, selectedGenres]);
 
+    // async function getPopularAnimes() {
+    //     const tvApiUrl = searchMade
+    //       ? `https://api.themoviedb.org/3/search/tv?api_key=13ed770be7087e090e65be33f0396891&with_genres=16&with_keywords=210024&query=${search}&page=${pageNumber}`
+    //       : selectedGenres?.length > 0
+    //       ? `https://api.themoviedb.org/3/discover/tv?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&sort_by=popularity.desc&page=${pageNumber}&with_genres=${selectedGenres.join(
+    //           "%2C"
+    //         )}`
+    //       : `https://api.themoviedb.org/3/tv/popular?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&page=${pageNumber}`;
+
+    //     const movieApiUrl = searchMade
+    //       ? `https://api.themoviedb.org/3/search/movie?api_key=13ed770be7087e090e65be33f0396891&with_genres=16&with_keywords=210024&query=${search}&page=${pageNumber}`
+    //       : selectedGenres?.length > 0
+    //       ? `https://api.themoviedb.org/3/discover/movie?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&sort_by=popularity.desc&page=${pageNumber}&with_genres=${selectedGenres.join(
+    //           "%2C"
+    //         )}`
+    //       : `https://api.themoviedb.org/3/movie/popular?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&page=${pageNumber}`;
+
+    //     const [tvRes, movieRes] = await Promise.all([
+    //       axios.get(tvApiUrl),
+    //       axios.get(movieApiUrl)
+    //     ]);
+
+    //     const tvAnimes = filterResults(tvRes.data.results);
+    //     const movieAnimes = filterResults(movieRes.data.results);
+
+    //     // Combine the results of both TV shows and movies into one array
+    //     const animes = [...tvAnimes, ...movieAnimes];
+
+    //     console.log("This is the combined data:", animes);
+
+    //     // Rest of your code...
+
+    //     // Filter function to filter the results based on the genre
+    //     function filterResults(results) {
+    //       if (filter === "featured") {
+    //         return results.filter(anime => anime.genre_ids.includes(16));
+    //       }
+    //       return results;
+    //     }
+    //   }
+
+
     async function getPopularAnimes() {
         const res = await axios.get(
-            searchMade
-                ? `https://api.themoviedb.org/3/search/tv?api_key=13ed770be7087e090e65be33f0396891&query=${search}&page=${pageNumber}`
-                : selectedGenres?.length > 0
-                ? `https://api.themoviedb.org/3/discover/tv?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&sort_by=popularity.desc&air_date.gte=2022-11-01&air_date.lte=2023-04-10&page=${pageNumber}&with_genres${selectedGenres.join("%2C")}`
-                : `https://api.themoviedb.org/3/tv/popular?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&page=${pageNumber}`
-                );
+          searchMade
+            ? `https://api.themoviedb.org/3/search/tv?api_key=13ed770be7087e090e65be33f0396891&with_genres=16&with_keywords=210024&query=${search}&page=${pageNumber}`
+            + `https://api.themoviedb.org/3/search/movie?api_key=13ed770be7087e090e65be33f0396891&with_genres=16&with_keywords=210024&query=${search}&page=${pageNumber}`
+            : selectedGenres?.length > 0
+            ? `https://api.themoviedb.org/3/discover/tv?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&sort_by=popularity.desc&page=${pageNumber}&with_genres=${selectedGenres.join("%2C")}`
+            : `https://api.themoviedb.org/3/tv/popular?api_key=13ed770be7087e090e65be33f0396891&with_keywords=210024&page=${pageNumber}`
+        );
+        console.log("this is data:", res.data.results)
+        let animes;
 
-                let animes;
+        if (filter === "featured") {
+          if (searchMade) {
+            animes = res.data.results.filter(anime => {
+              return anime.genre_ids.includes(16);
+            });
+          } else {
+            animes = res.data.results;
+          }
+        }
 
-                if (filter === "featured") {
-                    animes = res.data.results;
-                }
-                if (filter === "newest") {
-                    animes = res.data.results.sort(
-                        (a, b) =>
-                            parseInt(b.release_date?.slice(0, 5)) -
-                            parseInt(a.release_date?.slice(0, 5))
-                    );
-                }
-                if (filter === "oldest") {
-                    animes = res.data.results.sort(
-                        (a, b) =>
-                            parseInt(a.release_date?.slice(0, 5)) -
-                            parseInt(b.release_date?.slice(0, 5))
-                    );
-                }
-                if (filter === "rating") {
-                    animes = res.data.results.sort((a, b) => b.vote_average - a.vote_average);
-                }
+        if (filter === "newest") {
+          let filteredAnimes = searchMade
+            ? res.data.results.filter(anime => anime.genre_ids.includes(16))
+            : res.data.results;
 
-                const animeTotalPages = res.data.total_pages;
+          filteredAnimes.sort((a, b) => {
+            const yearA = parseInt(a.first_air_date?.slice(0, 4));
+            const yearB = parseInt(b.first_air_date?.slice(0, 4));
+            return yearB - yearA;
+          });
 
-                console.log(animes);
+          // Adjust pagination based on the filtered results
+          const pageSize = 20; // Number of results per page
+          const startIndex = (pageNumber - 1) * pageSize;
+          const endIndex = startIndex + pageSize;
+          animes = filteredAnimes.slice(startIndex, endIndex);
+        }
 
-                setAnimesData(animes);
-                if (selectedGenres.length > 0) {
-                    setPageNumber(1);
-                }
-                if (searchMade || selectedGenres.length > 0) {
-                    setTotalPages(animeTotalPages < 500 ? animeTotalPages: 500);
-                }
-    }
+        if (filter === "oldest") {
+          let filteredAnimes = searchMade
+            ? res.data.results.filter(anime => anime.genre_ids.includes(16))
+            : res.data.results;
+
+          filteredAnimes.sort((a, b) => {
+            const yearA = parseInt(a.first_air_date?.slice(0, 4));
+            const yearB = parseInt(b.first_air_date?.slice(0, 4));
+            return yearA - yearB;
+          });
+
+          // Adjust pagination based on the filtered results
+          const pageSize = 20; // Number of results per page
+          const startIndex = (pageNumber - 1) * pageSize;
+          const endIndex = startIndex + pageSize;
+          animes = filteredAnimes.slice(startIndex, endIndex);
+        }
+
+        if (filter === "rating") {
+          let filteredAnimes = searchMade
+            ? res.data.results.filter(anime => anime.genre_ids.includes(16))
+            : res.data.results;
+
+          filteredAnimes.sort((a, b) => b.vote_average - a.vote_average);
+
+          // Adjust pagination based on the filtered results
+          const pageSize = 20; // Number of results per page
+          const startIndex = (pageNumber - 1) * pageSize;
+          const endIndex = startIndex + pageSize;
+          animes = filteredAnimes.slice(startIndex, endIndex);
+        }
+
+        const animeTotalPages = res.data.total_pages;
+
+        setAnimesData(animes);
+        if (selectedGenres.length > 0) {
+          setPageNumber(1);
+        }
+        if (searchMade || selectedGenres.length > 0) {
+            const filteredTotalPages = Math.ceil(animes.length / 20);
+            setTotalPages(filteredTotalPages < 500 ? filteredTotalPages : 500);
+        }
+      }
+
 
     async function getAnimeGenres() {
         const res = await axios.get(
@@ -113,7 +195,7 @@ export default function AnimesPage () {
                                     poster={anime.poster_path}
                                     id={anime.id}
                                     key={anime.id}
-                                    year={anime.release_date?.slice(0, 4)}
+                                    year={anime.first_air_date?.slice(0, 4)}
                                     anime={true}
                                 />
                             ))

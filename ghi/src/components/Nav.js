@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import "./Nav.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import Spike from "./spike.jpg";
 
 export default function Nav () {
     const navigate = useNavigate()
@@ -26,7 +27,7 @@ export default function Nav () {
             <nav>
                 <div className="nav__left">
                     <p className="nav__logo pointer" onClick={() => navigate('/')}>
-                        Spike
+                        <img src={Spike} alt="Spike" style={{ height: "57px", width: "57px", zIndex: "1"}}/>
                     </p>
                 </div>
                 <div className="nav__right">
@@ -36,6 +37,13 @@ export default function Nav () {
                     </div>
                 </div>
             </nav>
+            <div className={`modal ${modalOpen ? 'open' : 'close'}`}>
+                <CloseIcon className="pointer" onClick={() => closeModal()}/>
+                <div className="modal__links">
+                    <Link onClick={() => closeModal()} to="/">Home</Link>
+                    <Link onClick={() => closeModal()} to="/">Animes</Link>
+                </div>
+            </div>
         </>
     )
 }
