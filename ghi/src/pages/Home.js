@@ -61,7 +61,7 @@ export default function Home() {
       <div className="home">
         <Nav />
         {loading ? (
-          <div className="carousel_skeleton skeleton" id="scroll__snap" />
+          <div className="carousel_skeleton skeleton" id="scroll--snap" />
         ) : (
           <OwlCarousel className="owl-theme" {...settings}>
             {animesData?.slice(0, 5).map((anime) => (
