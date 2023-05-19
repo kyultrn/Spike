@@ -9,8 +9,6 @@ import "../components/Skeleton.css";
 import AnimesList from "../components/AnimesList";
 import Anime from "../components/Anime.js";
 import Nav from "../components/Nav";
-import createScrollSnap from 'scroll-snap'
-
 
 export default function Home() {
   const settings = {
@@ -23,21 +21,9 @@ export default function Home() {
     smartSpeed: 500,
   };
 
-  const containerRef = useRef();
   const [loading, setLoading] = useState(true);
   const [animesData, setAnimesData] = useState([]);
   const [showsData, setShowsData] = useState([]);
-
-  useEffect(() => {
-    const element = containerRef.current;
-    const scrollSnapInstance = createScrollSnap(element, {
-      snapDestinationY: "90%",
-    }, () => console.log('snapped'));
-
-    return () => {
-      scrollSnapInstance.unbind();
-    };
-  }, []);
 
   async function getTopAnimes() {
     const url =
@@ -55,49 +41,53 @@ export default function Home() {
   }, []);
 
   return (
-      <div id="container" className="home" ref={containerRef}>
+      <div id="container" className="home">
         <Nav />
         {loading ? (
           <div className="carousel_skeleton skeleton" />
         ) : (
           <OwlCarousel className="owl-theme" {...settings}>
             {animesData?.slice(0, 5).map((anime) => (
-              <HomeBlock
-                title={anime.name}
-                backDrop={anime.backdrop_path}
-                likes={anime.vote_average}
-                year={anime.first_air_date.slice(0, 4)}
-                language={anime.original_language}
-                overview={anime.overview}
-                id={anime.id}
-                key={anime.id}
-                anime={true}
-              />
+              <div>
+                <HomeBlock
+                  title={anime.name}
+                  backDrop={anime.backdrop_path}
+                  likes={anime.vote_average}
+                  year={anime.first_air_date.slice(0, 4)}
+                  language={anime.original_language}
+                  overview={anime.overview}
+                  id={anime.id}
+                  key={anime.id}
+                  anime={true}
+                />
+              </div>
             ))}
           </OwlCarousel>
         )}
-        <AnimesList
-          listItems={
-            <>
-              {animesData?.slice(5, 17).map((anime) => (
-                <Anime
-                  title={anime.name}
-                  poster={anime.poster_path}
-                  id={anime.id}
-                  key={anime.id}
-                  year={anime.first_air_date.slice(0, 4)}
-                  anime={true}
-                />
-              ))}
-            </>
-          }
-          text="Popular Animes"
-          home={true}
-          animes={true}
-          loading={loading}
-          key={1}
-          amountOfAnimes={12}
-        />
+        <div>
+          <AnimesList
+            listItems={
+              <>
+                {animesData?.slice(5, 17).map((anime) => (
+                  <Anime
+                    title={anime.name}
+                    poster={anime.poster_path}
+                    id={anime.id}
+                    key={anime.id}
+                    year={anime.first_air_date.slice(0, 4)}
+                    anime={true}
+                  />
+                ))}
+              </>
+            }
+            text="Popular Animes"
+            home={true}
+            animes={true}
+            loading={loading}
+            key={1}
+            amountOfAnimes={12}
+          />
+        </div>
       </div>
   );
 }
