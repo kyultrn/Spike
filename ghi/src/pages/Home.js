@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import HomeBlock from "../components/HomeBlock";
 import "./Home.css";
@@ -9,7 +9,6 @@ import "../components/Skeleton.css";
 import AnimesList from "../components/AnimesList";
 import Anime from "../components/Anime.js";
 import Nav from "../components/Nav";
-// import { ScrollContainer, ScrollSnap } from "react-scroll-snap";
 import createScrollSnap from 'scroll-snap'
 
 
@@ -24,23 +23,21 @@ export default function Home() {
     smartSpeed: 500,
   };
 
+  const containerRef = useRef();
   const [loading, setLoading] = useState(true);
   const [animesData, setAnimesData] = useState([]);
   const [showsData, setShowsData] = useState([]);
 
-  const element = document.getElementById('scroll__snap')
+  useEffect(() => {
+    const element = containerRef.current;
+    const scrollSnapInstance = createScrollSnap(element, {
+      snapDestinationY: "90%",
+    }, () => console.log('snapped'));
 
-  const { bind, unbind } = createScrollSnap(element, {
-    snapDestinationX: '0%',
-    snapDestinationY: '90%',
-    timeout: 100,
-    duration: 300,
-    threshold: 0.2,
-    snapStop: false,
-    easing: easeInOutQuad,
-  }, () => console.log('element snapped'))
-
-  bind();
+    return () => {
+      scrollSnapInstance.unbind();
+    };
+  }, []);
 
   async function getTopAnimes() {
     const url =
@@ -58,10 +55,10 @@ export default function Home() {
   }, []);
 
   return (
-      <div className="home">
+      <div id="container" className="home" ref={containerRef}>
         <Nav />
         {loading ? (
-          <div className="carousel_skeleton skeleton" id="scroll--snap" />
+          <div className="carousel_skeleton skeleton" />
         ) : (
           <OwlCarousel className="owl-theme" {...settings}>
             {animesData?.slice(0, 5).map((anime) => (
