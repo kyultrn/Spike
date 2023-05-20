@@ -29,7 +29,7 @@ export default function Anime ({ title, poster, id, anime, year }) {
         <figure
             className="anime pointer"
             key={id}
-            onClick={() => navigate(`/tv/${id}`)}
+            onClick={() => navigate(`/animes/${id}`)}
         >
             {poster ? (
                 <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="" />

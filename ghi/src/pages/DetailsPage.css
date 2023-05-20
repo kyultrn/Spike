@@ -1,0 +1,304 @@
+.detailsPage {
+  width: 100vw;
+  height: 100%;
+  min-height: 150vh;
+  min-width: 100vw;
+  background-color: #161d1f;
+  color: white;
+}
+
+.detailsPage__anime {
+  display: flex;
+  position: relative;
+  align-items: center;
+  background: top center;
+  background-size: cover;
+  min-width: 100%;
+  height: 85vh;
+  padding: 0 24px;
+}
+
+.detailsPage__anime::before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  backdrop-filter: brightness(25%);
+}
+
+
+
+.detailsPage__anime--content {
+  z-index: 2;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.detailsPage__anime--img {
+  max-width: 100%;
+  width: 360px;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  margin-right: 48px;
+  overflow: hidden;
+}
+
+.detailsPage__anime--img > img {
+  max-width: 100%;
+}
+
+.detailsPage__anime--text > h1 {
+  font-size: 56px;
+  margin-bottom: 4px;
+}
+
+.detailsPage__anime--details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.detailsPage__anime--language,
+.detailsPage__anime--genres,
+.detailsPage__anime--year {
+  margin-right: 24px;
+}
+
+.detailsPage__anime--year,
+.detailsPage__anime--runtime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailsPage__anime--year > .MuiSvgIcon-root,
+.detailsPage__anime--runtime > .MuiSvgIcon-root {
+  font-size: 18px;
+}
+
+.detailsPage__anime--year > p,
+.detailsPage__anime--runtime > p {
+  margin-left: 4px;
+}
+
+.detailsPage__anime--language {
+  padding: 4px 10px;
+  border: 1px white solid;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.detailsPage__anime--seasons {
+  font-weight: 400;
+}
+
+.detailsPage__anime--actors {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.detailsPage__anime--actors > h4,
+.detailsPage__anime--overview > h4 {
+  font-size: 18px;
+}
+
+.detailsPage__anime--actors > h4,
+.detailsPage__anime--overview > h4,
+.detailsPage__anime--rating > h4,
+.detailsPage__anime--producers > h4 {
+  margin-bottom: 4px;
+}
+
+.detailsPage__anime--overview {
+  margin-bottom: 24px;
+  line-height: 22px;
+  word-spacing: 0.4px;
+  max-width: 700px;
+}
+
+.detailsPage__anime--bottom {
+  display: flex;
+  margin-bottom: 40px;
+  font-size: 0px;
+}
+
+.detailsPage__anime--rating {
+  margin-right: 24px;
+  flex: 0.15;
+  font-size: 16px;
+}
+
+.detailsPage__anime--producers {
+  font-size: 16px;
+  flex: 0.85;
+}
+
+.detailsPage__anime--button {
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: white;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 16px 20px;
+  border: 2px white solid;
+  transition: 300ms ease;
+}
+
+.detailsPage__anime--button:hover {
+  color: black;
+  background-color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .detailsPage__anime {
+    height: 100%;
+    padding: 80px 32px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .detailsPage__anime--img {
+    margin: 0;
+    margin-bottom: 24px;
+  }
+
+  .detailsPage__anime--content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detailsPage__anime--text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detailsPage__anime--text > h1 {
+    font-size: 44px;
+  }
+  .detailsPage__anime--actors > h4,
+  .detailsPage__anime--overview > h4 {
+    font-size: 16px;
+  }
+
+  .detailsPage__anime--language,
+  .detailsPage__anime--genres,
+  .detailsPage__anime--year,
+  .detailsPage__anime--runtime,
+  .detailsPage__anime--seasons {
+    font-size: 14px;
+  }
+
+  .detailsPage__anime--details,
+  .detailsPage__anime--bottom {
+    justify-content: center;
+  }
+
+  .detailsPage__anime--overview {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detailsPage__anime--overview > p {
+    max-width: 100%;
+  }
+
+  .detailsPage__anime--bottom {
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .detailsPage__anime--rating,
+  .detailsPage__anime--producers {
+    flex: 0.5;
+  }
+
+  .detailsPage__anime--button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .detailsPage__anime {
+    padding: 80px 24px;
+  }
+
+  .detailsPage__anime--content {
+    text-align: left;
+  }
+
+  .detailsPage__anime--text {
+    align-items: start;
+  }
+
+  .detailsPage__anime--details,
+  .detailsPage__anime--bottom {
+    justify-content: start;
+  }
+
+  .detailsPage__anime--language,
+  .detailsPage__anime--genres,
+  .detailsPage__anime--year {
+    margin-right: 12px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .detailsPage__anime--runtime,
+  .detailsPage__anime--seasons {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .detailsPage__anime--details {
+    margin-bottom: 16px;
+  }
+
+  .detailsPage__anime--actors {
+    margin-bottom: 16px;
+  }
+
+  .detailsPage__anime--button {
+    font-size: 18px;
+  }
+
+  .detailsPage__anime--actors > p,
+  .detailsPage__anime--overview > p,
+  .detailsPage__anime--rating > p,
+  .detailsPage__anime--producers > p {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .detailsPage__anime--actors > h4,
+  .detailsPage__anime--overview > h4,
+  .detailsPage__anime--rating > h4,
+  .detailsPage__anime--producers > h4 {
+    width: 100%;
+    text-align: left;
+  }
+
+  .detailsPage__anime--rating {
+    flex: 0.3;
+  }
+
+  .detailsPage__anime--producers {
+    flex: 0.7;
+  }
+}
