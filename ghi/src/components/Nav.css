@@ -149,6 +149,20 @@ nav {
     border-bottom-color: black;
 }
 
+.modal-open .modal,
+.modal-close .modal{
+  visibility: visible;
+}
+
+.modal-open{
+  height: 100vh;
+  overflow-y: hidden !important;
+}
+
+.modal-open::-webkit-scrollbar{
+  display: none;
+}
+
 .open {
     transform: translateX(0%);
     overflow: hidden;

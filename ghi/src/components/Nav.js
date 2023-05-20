@@ -35,13 +35,14 @@ export default function Nav () {
                         <Link to="/">Home</Link>
                         <Link to="/animes">Animes</Link>
                     </div>
+                    <MenuIcon className="pointer" onClick={() => openModal()} />
                 </div>
             </nav>
             <div className={`modal ${modalOpen ? 'open' : 'close'}`}>
                 <CloseIcon className="pointer" onClick={() => closeModal()}/>
                 <div className="modal__links">
                     <Link onClick={() => closeModal()} to="/">Home</Link>
-                    <Link onClick={() => closeModal()} to="/">Animes</Link>
+                    <Link onClick={() => closeModal()} to="/animes">Animes</Link>
                 </div>
             </div>
         </>
