@@ -58,7 +58,7 @@ export default function DetailsPage({ anime }) {
       `https://api.themoviedb.org/3/tv/${animeId}/recommendations?api_key=13ed770be7087e090e65be33f0396891&language=en-US&page=1`
     );
     let data;
-    let res2;
+    // let res2;
     let data2 = [];
 
     // if (res.data.results.length === 0) {

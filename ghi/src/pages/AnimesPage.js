@@ -164,7 +164,7 @@ export default function AnimesPage () {
         );
 
         const data = res.data.genres;
-
+        data.splice(14, 1);
         setAnimeGenres(data);
     }
 
