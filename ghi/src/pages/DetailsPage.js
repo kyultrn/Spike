@@ -59,21 +59,30 @@ export default function DetailsPage({ anime }) {
     );
     let data;
     let res2;
+    let data2 = [];
 
-    if (res.data.results.length === 0) {
-      res2 = await axios.get(
-        `https://api.themoviedb.org/3/tv/${animeId}/similar?api_key=13ed770be7087e090e65be33f0396891&language=en-US&page=1`
-      );
-      data = res2.data.results.slice(0, 4);
+    // if (res.data.results.length === 0) {
+    //   res2 = await axios.get(
+    //     `https://api.themoviedb.org/3/tv/${animeId}/similar?api_key=13ed770be7087e090e65be33f0396891&language=en-US&page=1`
+    //   );
 
-      return setRecommendedAnimes(data);
+    //   data = res2.data.results.slice(0, 4);
+
+    //   return setRecommendedAnimes(data);
+    // }
+    console.log(res);
+    for (let show of res.data.results) {
+      if (show.genre_ids.includes(16)) {
+        data2.push(show);
+      }
     }
+    console.log("this is filtered genre 16 data: ", data2);
 
-    data = res.data.results.slice(0, 4);
+    data = data2.slice(0, 4);
     setRecommendedAnimes(data);
   }
 
-  console.log(recommendedAnimes)
+  // console.log(recommendedAnimes)
 
   return (
     <div className="detailsPage">
